@@ -1,0 +1,48 @@
+<div class="container mt-5">
+
+  <div class="row">
+    <div class="col-md-12">
+
+      <h2 class="text-center">Formulaire pour ajouter un chat</h2>
+
+      <form (ngSubmit)="formKitten.valid" #formKitten="ngForm">
+
+        <div class="m-4">
+          <span class="alert alert-success" *ngIf="formKitten.submitted">Formulaire envoyer</span>
+        </div>
+
+        <div class="m-4">
+          <label for="kittenName">Name</label>
+          <input id="Name" name="kittenName" class="form-control" [(ngModel)]="addCat.name" #Name="ngModel" type="text"
+            required>
+        </div>
+
+        <div class="m-4">
+          <label for="kittenRace">Race</label>
+          <input id="Race" name="kittenRace" class="form-control" [(ngModel)]="addCat.race" #Race="ngModel" type="text"
+            required>
+        </div>
+
+        <div class="m-4">
+          <label for="kittenBirthday">Date de naisance</label>
+          <input id="Birthday" name="kittenBirthday" class="form-control" [(ngModel)]="addCat.years" #Birthday="ngModel"
+            type="text" required>
+        </div>
+
+        <div class="m-4">
+          <label for="kittenPicture">picture</label>
+          <input id="Picture" name="kittenPicture" class="form-control" [(ngModel)]="addCat.picture" #Picture="ngModel"
+            type="text">
+        </div>
+
+        <button [className]="formKitten.submitted ? 'btn btn-success btn-block' : 'btn btn-danger btn-block'"
+          type="submit" (click)="addKitten(Name.value, Race.value, Birthday.value, Picture.value)">Ajouter
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
