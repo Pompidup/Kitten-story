@@ -1,0 +1,7 @@
+div .hide {
+  opacity: 0;
+}
+
+div:hover .hide {
+  opacity: 1;
+}

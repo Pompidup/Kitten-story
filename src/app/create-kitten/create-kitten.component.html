@@ -5,39 +5,50 @@
 
       <h2 class="text-center">Formulaire pour ajouter un chat</h2>
 
-      <form (ngSubmit)="formKitten.valid" #formKitten="ngForm">
+      <form (ngSubmit)="formKitten.valid && addKitten(Name.value, Race.value, Birthday.value, Picture.value)" #formKitten="ngForm">
 
         <div class="m-4">
           <span class="alert alert-success" *ngIf="formKitten.submitted">Formulaire envoyer</span>
         </div>
 
-        <div class="m-4">
+        <div class="m-4 form-group">
           <label for="kittenName">Name</label>
           <input id="Name" name="kittenName" class="form-control" [(ngModel)]="addCat.name" #Name="ngModel" type="text"
             required>
         </div>
+        <div *ngIf="Name.errors && formKitten.submitted">
+            <span *ngIf="Name.errors.required">Votre chat a bien un nom ??</span>
+        </div>
 
-        <div class="m-4">
+        <div class="m-4 form-group">
           <label for="kittenRace">Race</label>
           <input id="Race" name="kittenRace" class="form-control" [(ngModel)]="addCat.race" #Race="ngModel" type="text"
             required>
         </div>
+        <div *ngIf="Race.errors && formKitten.submitted">
+              <span *ngIf="Race.errors.required">Race obligatoire</span>
+          </div>
 
-        <div class="m-4">
+        <div class="m-4 form-group">
           <label for="kittenBirthday">Date de naisance</label>
           <input id="Birthday" name="kittenBirthday" class="form-control" [(ngModel)]="addCat.years" #Birthday="ngModel"
             type="text" required>
         </div>
+        <div *ngIf="Birthday.errors && formKitten.submitted">
+              <span *ngIf="Birthday.errors.required">Date de naissance obligatoire</span>
+          </div>
 
-        <div class="m-4">
+        <div class="m-4 form-group">
           <label for="kittenPicture">picture</label>
           <input id="Picture" name="kittenPicture" class="form-control" [(ngModel)]="addCat.picture" #Picture="ngModel"
             type="text">
         </div>
+        <div *ngIf="Picture.errors && formKitten.submitted">
+              <span *ngIf="Picture.errors.required">Votre chat a bien un nom ??</span>
+          </div>
 
-        <button [className]="formKitten.submitted ? 'btn btn-success btn-block' : 'btn btn-danger btn-block'"
-          type="submit" (click)="addKitten(Name.value, Race.value, Birthday.value, Picture.value)">Ajouter
-        </button>
+        <button class="btn btn-primary" [style.backgroundColor]="formKitten.invalid ? 'btn btn-success btn-block' : 'btn btn-danger btn-block'"
+        type="submit">Ajouter</button>
 
       </form>
 

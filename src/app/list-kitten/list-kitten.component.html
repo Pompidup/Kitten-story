@@ -2,32 +2,38 @@
 
   <div class="row mb-5">
 
-    <div class="col-md-6 mt-4 p-3 card">
+    <div class="col-md-6 mt-4 p-3">
       <p class="text-center">List Chat a adopter</p>
 
-      <table class="table table-hover">
+
+      <table class="table">
         <thead>
           <tr>
+            <th scope="col">#</th>
+            <th scope="col">Picture</th>
+            <th scope="col">Add</th>
             <th scope="col">Name</th>
             <th scope="col">Race</th>
             <th scope="col">Birthday</th>
-            <th scope="col">Picture</th>
-
           </tr>
         </thead>
         <tbody>
 
-          <ng-container *ngFor="let current of kittenList;">
-            <tr>
+          <tr *ngFor="let current of kittenList; index as i">
+            <th scope="row">{{i+1}}</th>
+            <td><img [src]="current.Picture" alt="image" class="card-img-top" /></td>
+            <td><button class="btn btn-success"
+                (click)="addKittenUser(current.Name, current.Race, current.Birthday, current.Picture, current)">Ajouter</button>
+            </td>
+
+            <div class="hide">
               <td>{{current.Name}}</td>
               <td>{{current.Race}}</td>
               <td>{{current.Birthday}}</td>
-              <td><img [src]="current.Picture" alt="image" class="card-img-top" /></td>
-              <td>
-                <button class="btn btn-success" (click)="addKittenUser(current.Name, current.Race, current.Birthday, current.Picture, current)">Ajouter</button>
-              </td>
-            </tr>
-          </ng-container>
+
+            </div>
+          </tr>
+
 
         </tbody>
       </table>
